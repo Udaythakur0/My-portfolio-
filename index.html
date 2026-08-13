@@ -5,10 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Uday Thakur | 3D Web Creator Portfolio</title>
   
-  <!-- Three.js & OrbitControls -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-
   <style>
     :root {
       --bg-color: #070708;
@@ -100,7 +96,6 @@
     }
     .whatsapp-float:hover { transform: scale(1.1); }
 
-    /* Sections Shared Styling */
     .section {
       padding: 60px 8%;
       border-top: 1px solid var(--border);
@@ -116,80 +111,14 @@
 
     .highlight { color: var(--accent); }
 
-    /* About Section Grid */
-    .about-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      align-items: center;
-      margin-top: 20px;
-    }
-
-    .about-box {
-      background: var(--card-bg);
-      padding: 25px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-    }
-
-    .about-box h3 {
-      font-size: 1.3rem;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 15px;
-    }
-
-    .tag {
-      background: #1e1e24;
-      color: #fff;
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      border: 1px solid var(--border);
-    }
-
-    /* 3D Canvas Box */
-    .canvas-container {
-      width: 100%;
-      height: 450px;
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      background: radial-gradient(circle at center, #1a1a20 0%, #070708 100%);
-      border: 1px solid var(--border);
-      margin-top: 15px;
-      box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
-    }
-
-    .canvas-hint {
-      position: absolute;
-      bottom: 12px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.75rem;
-      color: var(--text-sub);
-      background: rgba(0,0,0,0.85);
-      padding: 5px 14px;
-      border-radius: 12px;
-      pointer-events: none;
-      border: 1px solid rgba(255,255,255,0.12);
-      z-index: 10;
-      letter-spacing: 0.5px;
-    }
-
-    /* Hero Layout */
+    /* Hero & Showcase Layout */
     .hero {
       display: flex;
       flex-direction: column;
       padding: 30px 8%;
-      min-height: 90vh;
+      min-height: 80vh;
+      align-items: center;
+      text-align: center;
     }
 
     .status-tag {
@@ -198,37 +127,6 @@
       font-weight: 700;
       margin-bottom: 15px;
       letter-spacing: 1px;
-    }
-
-    .avatar-container {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 15px;
-    }
-
-    .avatar-box {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: #1e1e1e;
-      border: 2px solid var(--accent);
-      box-shadow: 0 0 15px var(--accent-glow);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.4rem;
-    }
-
-    .avatar-label {
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      color: var(--text-main);
-      background: #1a1a1a;
-      padding: 4px 10px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
     }
 
     .hero h1 {
@@ -245,7 +143,7 @@
       margin-bottom: 25px;
     }
 
-    .btn-group { display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+    .btn-group { display: flex; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; justify-content: center; }
 
     .btn {
       padding: 12px 24px;
@@ -278,69 +176,118 @@
       color: var(--text-main);
       background: var(--card-bg);
     }
-    .secondary-btn:hover { border-color: var(--accent); }
 
-    /* Cards & Grids */
+    /* REALISTIC CSS LAPTOP MOCKUP */
+    .device-showcase {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    .laptop-mockup {
+      width: 100%;
+      max-width: 650px;
+      background: #1a1a1e;
+      border-radius: 16px;
+      border: 2px solid #333;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      overflow: hidden;
+    }
+
+    .laptop-screen {
+      background: #1e1e1e;
+      padding: 20px;
+      border-bottom: 2px solid #333;
+      font-family: 'Courier New', Courier, monospace;
+      text-align: left;
+      min-height: 220px;
+    }
+
+    .code-line { font-size: 0.85rem; margin-bottom: 6px; }
+    .c-blue { color: #569cd6; }
+    .c-yellow { color: #dcdcaa; }
+    .c-orange { color: #ce9178; }
+    .c-green { color: #6a9955; }
+
+    .laptop-base {
+      height: 30px;
+      background: linear-gradient(to bottom, #2b2b30, #161618);
+      border-radius: 0 0 14px 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .laptop-trackpad {
+      width: 100px;
+      height: 6px;
+      background: #3a3a40;
+      border-radius: 4px;
+    }
+
+    /* REALISTIC CSS MOBILE MOCKUP */
+    .mobile-mockup {
+      width: 260px;
+      background: #151518;
+      border-radius: 30px;
+      border: 4px solid #333;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .mobile-notch {
+      width: 100px;
+      height: 16px;
+      background: #333;
+      margin: 0 auto;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    .mobile-screen {
+      background: #1e1e1e;
+      padding: 15px;
+      font-family: monospace;
+      font-size: 0.75rem;
+      text-align: left;
+      min-height: 280px;
+      color: #fff;
+    }
+
+    /* Grids & Cards */
     .project-grid, .service-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
     }
 
-    .project-card, .service-card {
+    .project-card, .service-card, .about-box {
       background: var(--card-bg);
       border-radius: 12px;
       border: 1px solid var(--border);
-      overflow: hidden;
+      padding: 25px;
+    }
+
+    .service-card h3, .about-box h3 { color: var(--accent); margin-bottom: 10px; }
+
+    .skill-tags {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
     }
 
-    .service-card { padding: 25px; }
-    .service-card h3 { color: var(--accent); margin-bottom: 10px; }
-
-    .card-header {
-      background: #19191c;
-      padding: 10px 15px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border-bottom: 1px solid var(--border);
+    .tag {
+      background: #1e1e24;
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      border: 1px solid var(--border);
     }
-
-    .dot { width: 10px; height: 10px; border-radius: 50%; }
-    .red { background: #ff5f56; }
-    .yellow { background: #ffbd2e; }
-    .green { background: #27c93f; }
-    .card-body { padding: 20px; }
-
-    .card-footer {
-      padding: 15px 20px;
-      background: #0f0f11;
-      border-top: 1px solid var(--border);
-    }
-
-    .link-btn {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.85rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      transition: 0.2s;
-    }
-    .link-btn:hover { text-decoration: underline; }
-
-    /* Timeline & Contact */
-    .timeline { position: relative; padding-left: 20px; border-left: 2px solid var(--border); }
-    .timeline-item { position: relative; margin-bottom: 25px; padding-left: 15px; }
-    .dot-icon {
-      position: absolute; left: -26px; top: 5px; width: 10px; height: 10px;
-      border-radius: 50%; background: var(--text-sub);
-    }
-    .timeline-item.active .dot-icon { background: var(--accent); box-shadow: 0 0 10px var(--accent); }
 
     .contact-wrapper {
       display: grid;
@@ -369,9 +316,7 @@
 <body>
 
   <!-- Floating WhatsApp Icon -->
-  <a href="https://wa.me/918470907072?text=Hi%20Uday!%20I%20saw%20your%20portfolio%20and%20want%20to%20discuss%20a%20project." class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
-    💬
-  </a>
+  <a href="https://wa.me/918470907072?text=Hi%20Uday!%20I%20saw%20your%20portfolio." class="whatsapp-float" target="_blank">💬</a>
 
   <!-- Navigation -->
   <nav class="navbar">
@@ -379,7 +324,6 @@
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#services">Services</a>
-      <a href="#hero">3D Laptop</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </div>
@@ -387,167 +331,110 @@
   </nav>
 
   <!-- HERO SECTION -->
-  <section id="hero" class="hero">
-    <div class="hero-content">
-      <div class="status-tag">⚡ CURRENTLY LEARNING • BUILDING WITH AI</div>
-      
-      <div class="avatar-container">
-        <div class="avatar-box">👨‍💻</div>
-        <span class="avatar-label">UDAY / CREATOR</span>
-      </div>
-
-      <h1>UDAY<br><span class="highlight">THAKUR</span></h1>
-      <p class="subtitle">I’m learning web development and using AI to turn ideas into interactive 3D digital experiences.</p>
-      
-      <div class="btn-group">
-        <a href="#projects" class="btn primary-btn">Explore Projects ↗</a>
-        <a href="#contact" class="btn secondary-btn">Contact Me</a>
-      </div>
+  <section class="hero">
+    <div class="status-tag">⚡ CURRENTLY LEARNING • BUILDING WITH AI</div>
+    <h1>UDAY<br><span class="highlight">THAKUR</span></h1>
+    <p class="subtitle">I’m learning web development and building modern, responsive web portfolios using AI.</p>
+    
+    <div class="btn-group">
+      <a href="#projects" class="btn primary-btn">Explore Projects ↗</a>
+      <a href="#contact" class="btn secondary-btn">Contact Me</a>
     </div>
 
-    <div class="canvas-container" id="laptop-container">
-      <div class="canvas-hint">💻 Realistic 3D Laptop • Touch & Drag to rotate</div>
+    <!-- Laptop Mockup -->
+    <div class="device-showcase">
+      <div class="laptop-mockup">
+        <div class="laptop-screen">
+          <div class="code-line"><span class="c-green">// Uday Thakur - Web Portfolio</span></div>
+          <div class="code-line"><span class="c-blue">const</span> developer = {</div>
+          <div class="code-line">&nbsp;&nbsp;name: <span class="c-orange">"Uday Thakur"</span>,</div>
+          <div class="code-line">&nbsp;&nbsp;skills: [<span class="c-orange">"HTML"</span>, <span class="c-orange">"CSS"</span>, <span class="c-orange">"JavaScript"</span>],</div>
+          <div class="code-line">&nbsp;&nbsp;status: <span class="c-blue">true</span></div>
+          <div class="code-line">};</div>
+          <div class="code-line"><span class="c-yellow">console.log</span>(<span class="c-orange">"Welcome to my portfolio!"</span>);</div>
+        </div>
+        <div class="laptop-base">
+          <div class="laptop-trackpad"></div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ABOUT ME SECTION -->
+  <!-- ABOUT ME -->
   <section id="about" class="section">
     <h2 class="section-title">ABOUT <span class="highlight">ME</span></h2>
-    <div class="about-container">
+    <div class="project-grid">
       <div class="about-box">
         <h3>Who I Am</h3>
         <p style="color: var(--text-sub); font-size: 0.95rem;">
-          Hi! I am <strong>Uday Thakur</strong>. I am currently pursuing O Level computer courses and continuously expanding my skills in modern Web Development. I leverage modern AI tools to code faster, build interactive 3D web applications, and craft visually appealing websites.
+          Hi! I am <strong>Uday Thakur</strong>. Currently pursuing O Level computer courses and expanding my skills in modern Web Development with the help of AI.
         </p>
       </div>
-
       <div class="about-box">
-        <h3>Tech Skills & Tools</h3>
-        <p style="color: var(--text-sub); font-size: 0.95rem;">
-          Technologies I am actively learning, mastering, and implementing:
-        </p>
+        <h3>Tech Skills</h3>
         <div class="skill-tags">
           <span class="tag">HTML5</span>
           <span class="tag">CSS3</span>
           <span class="tag">JavaScript</span>
-          <span class="tag">Three.js (3D Web)</span>
-          <span class="tag">AI Prompting & Coding</span>
-          <span class="tag">Responsive Web Design</span>
+          <span class="tag">Responsive Design</span>
+          <span class="tag">AI Prompting</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES SECTION -->
+  <!-- SERVICES -->
   <section id="services" class="section">
     <h2 class="section-title">WHAT I <span class="highlight">OFFER</span></h2>
     <div class="service-grid">
       <div class="service-card">
-        <div>
-          <h3>🌐 Modern Web Design</h3>
-          <p style="color: var(--text-sub); font-size: 0.9rem;">Clean, fast, and responsive websites tailored for local businesses like Salons, Parlours, & Shops.</p>
-        </div>
+        <h3>🌐 Modern Web Design</h3>
+        <p style="color: var(--text-sub); font-size: 0.9rem;">Clean, fast, and responsive websites tailored for local businesses and creators.</p>
       </div>
       <div class="service-card">
-        <div>
-          <h3>🧊 3D Interactive Graphics</h3>
-          <p style="color: var(--text-sub); font-size: 0.9rem;">Integrating 3D objects and interactive elements using Three.js to make your website stand out.</p>
-        </div>
+        <h3>📱 Mobile-First Layouts</h3>
+        <p style="color: var(--text-sub); font-size: 0.9rem;">Websites optimized perfectly to look amazing on mobile phones and tablets.</p>
       </div>
       <div class="service-card">
-        <div>
-          <h3>⚡ AI Assisted Coding</h3>
-          <p style="color: var(--text-sub); font-size: 0.9rem;">Leveraging advanced AI tools to build high-converting landing pages faster with modern aesthetics.</p>
-        </div>
+        <h3>⚡ AI Assisted Coding</h3>
+        <p style="color: var(--text-sub); font-size: 0.9rem;">Building high-quality landing pages faster with modern aesthetics.</p>
       </div>
     </div>
   </section>
 
-  <!-- MOBILE SHOWCASE SECTION -->
-  <section id="mobile-section" class="section">
-    <h2 class="section-title">MOBILE-FIRST <span class="highlight">RESPONSIVE DESIGN</span></h2>
-    <p style="text-align:center; color: var(--text-sub); margin-bottom:15px;">360° Detailed Smartphone with Code Screen & Camera Lens</p>
-
-    <div class="canvas-container" id="mobile-container">
-      <div class="canvas-hint">📱 Interactive 3D Smartphone • Touch & Drag to rotate</div>
+  <!-- MOBILE SHOWCASE -->
+  <section class="section" style="text-align: center;">
+    <h2 class="section-title">MOBILE <span class="highlight">PREVIEW</span></h2>
+    <p style="color: var(--text-sub); margin-bottom: 25px;">Fully responsive across all mobile screens</p>
+    <div class="mobile-mockup">
+      <div class="mobile-notch"></div>
+      <div class="mobile-screen">
+        <p style="color: #569cd6;">&lt;html&gt;</p>
+        <p style="color: #ce9178;">&nbsp;&nbsp;&lt;h1&gt;Uday Thakur&lt;/h1&gt;</p>
+        <p style="color: #ce9178;">&nbsp;&nbsp;&lt;p&gt;Web Creator&lt;/p&gt;</p>
+        <p style="color: #569cd6;">&lt;/html&gt;</p>
+      </div>
     </div>
   </section>
 
-  <!-- CUBE SECTION -->
-  <section id="cube-section" class="section">
-    <h2 class="section-title">INTERACTIVE <span class="highlight">3D TECH CUBE</span></h2>
-    <p style="text-align:center; color: var(--text-sub); margin-bottom:15px;">360° Auto-Rotating Tech Cube • Drag to control manually.</p>
-
-    <div class="canvas-container" id="cube-container">
-      <div class="canvas-hint">🧊 Interactive Tech Cube • Touch & Drag to Rotate</div>
-    </div>
-  </section>
-
-  <!-- PROJECTS SECTION -->
+  <!-- PROJECTS -->
   <section id="projects" class="section">
     <h2 class="section-title">FEATURED <span class="highlight">PROJECTS</span></h2>
-    
     <div class="project-grid">
       <div class="project-card">
-        <div>
-          <div class="card-header">
-            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-            <span style="font-size: 0.8rem; color: var(--text-sub);">Star Men's Parlour</span>
-          </div>
-          <div class="card-body">
-            <h3 style="color: var(--accent);">STAR MEN'S PARLOUR</h3>
-            <p style="color: var(--text-sub); font-size: 0.9rem; margin-top: 5px;">Premium men's salon design with WhatsApp CTA and luxury dark branding built for real clients.</p>
-          </div>
-        </div>
-        <div class="card-footer">
-          <a href="https://udaythakur0.github.io/Star-Men-s-Parlour/" target="_blank" class="link-btn">
-            Live Site ↗
-          </a>
-        </div>
+        <h3 style="color: var(--accent);">STAR MEN'S PARLOUR</h3>
+        <p style="color: var(--text-sub); font-size: 0.9rem; margin: 10px 0;">Premium men's salon design with WhatsApp CTA and luxury dark branding.</p>
+        <a href="https://udaythakur0.github.io/Star-Men-s-Parlour/" target="_blank" class="btn primary-btn" style="padding: 8px 16px; font-size: 0.8rem; margin-top: 10px;">Live Site ↗</a>
       </div>
-
       <div class="project-card">
-        <div>
-          <div class="card-header">
-            <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
-            <span style="font-size: 0.8rem; color: var(--text-sub);">Abhay Aura</span>
-          </div>
-          <div class="card-body">
-            <h3 style="color: var(--accent);">ABHAY AURA</h3>
-            <p style="color: var(--text-sub); font-size: 0.9rem; margin-top: 5px;">Luxury Salon & Spa Website Layout featuring booking CTAs and sleek modern theme.</p>
-          </div>
-        </div>
-        <div class="card-footer">
-          <span style="color: var(--text-sub); font-size: 0.8rem;">Concept Design</span>
-        </div>
+        <h3 style="color: var(--accent);">ABHAY AURA</h3>
+        <p style="color: var(--text-sub); font-size: 0.9rem; margin: 10px 0;">Luxury Salon & Spa Website Layout featuring booking CTAs.</p>
+        <span style="color: var(--text-sub); font-size: 0.8rem; display:inline-block; margin-top: 15px;">Concept Design</span>
       </div>
     </div>
   </section>
 
-  <!-- JOURNEY SECTION -->
-  <section class="section">
-    <h2 class="section-title">MY <span class="highlight">JOURNEY</span></h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="dot-icon"></div>
-        <div class="timeline-content">
-          <span style="font-size:0.75rem; color: var(--accent); font-weight:700;">Starting</span>
-          <h4>Learning Phase</h4>
-          <p style="color:var(--text-sub); font-size:0.85rem;">Started O Level & Web Development basics.</p>
-        </div>
-      </div>
-      <div class="timeline-item active">
-        <div class="dot-icon"></div>
-        <div class="timeline-content">
-          <span style="font-size:0.75rem; color: var(--accent); font-weight:700;">Now</span>
-          <h4>AI + 3D Web Development</h4>
-          <p style="color:var(--text-sub); font-size:0.85rem;">Building interactive, high-graphics websites using AI & Three.js.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT SECTION -->
+  <!-- CONTACT -->
   <section id="contact" class="section">
     <h2 class="section-title">LET'S BUILD <span class="highlight">SOMETHING.</span></h2>
     <div class="contact-wrapper">
@@ -559,20 +446,15 @@
             <p>+91 8470907072</p>
           </div>
         </a>
-
         <div class="c-card">
           <span>📧</span>
           <div><label style="font-size:0.7rem; color:var(--text-sub);">EMAIL</label><p>uday847090@gmail.com</p></div>
-        </div>
-        <div class="c-card">
-          <span>📞</span>
-          <div><label style="font-size:0.7rem; color:var(--text-sub);">PHONE</label><p>8470907072</p></div>
         </div>
       </div>
 
       <form class="contact-form" onsubmit="sendToWhatsApp(event)">
         <input type="text" id="clientName" placeholder="Your Name" required>
-        <input type="text" id="clientProject" placeholder="Your Project Type (e.g., Salon Website)" required>
+        <input type="text" id="clientProject" placeholder="Your Project Type" required>
         <textarea id="clientMsg" rows="3" placeholder="Your Message" required></textarea>
         <button type="submit" class="btn whatsapp-btn">SEND VIA WHATSAPP →</button>
       </form>
@@ -582,54 +464,18 @@
   <footer class="footer">
     <div style="font-weight:900;">UDAY THAKUR</div>
     <p style="color:var(--accent); font-size:0.85rem;">AI-Assisted Web Creator</p>
-    <p style="color:var(--text-sub); font-size:0.75rem; margin-top:5px;">© 2026 Uday Thakur • Built with code & AI.</p>
+    <p style="color:var(--text-sub); font-size:0.75rem; margin-top:5px;">© 2026 Uday Thakur</p>
   </footer>
 
-  <!-- 3D GRAPHICS ENGINE & OPTIMIZED SCRIPT -->
   <script>
     function sendToWhatsApp(e) {
       e.preventDefault();
       const name = document.getElementById('clientName').value;
       const project = document.getElementById('clientProject').value;
       const msg = document.getElementById('clientMsg').value;
-      
-      const text = `Hi Uday! My name is ${name}. I am looking for: ${project}. Message: ${msg}`;
-      const encodedText = encodeURIComponent(text);
-      window.open(`https://wa.me/918470907072?text=${encodedText}`, '_blank');
+      const text = `Hi Uday! My name is ${name}. Project: ${project}. Message: ${msg}`;
+      window.open(`https://wa.me/918470907072?text=${encodeURIComponent(text)}`, '_blank');
     }
-
-    function createAutoResetControls(camera, domElement, defaultPos) {
-      const controls = new THREE.OrbitControls(camera, domElement);
-      controls.enableDamping = true;
-      controls.dampingFactor = 0.05;
-      controls.enableZoom = false;
-
-      let isResetting = false;
-      let resetTimeout = null;
-
-      function startInteraction() {
-        isResetting = false;
-        if (resetTimeout) clearTimeout(resetTimeout);
-      }
-
-      function endInteraction() {
-        if (resetTimeout) clearTimeout(resetTimeout);
-        resetTimeout = setTimeout(() => { isResetting = true; }, 2000);
-      }
-
-      domElement.addEventListener('pointerdown', startInteraction);
-      domElement.addEventListener('pointerup', endInteraction);
-
-      return {
-        controls,
-        update: function() {
-          if (isResetting) {
-            camera.position.lerp(defaultPos, 0.08);
-            controls.target.lerp(new THREE.Vector3(0, 0, 0), 0.08);
-            if (camera.position.distanceTo(defaultPos) < 0.01) {
-              camera.position.copy(defaultPos);
-              controls.target.set(0, 0, 0);
-              isResetting = false;
-            }
-          }
-       
+  </script>
+</body>
+</html>
