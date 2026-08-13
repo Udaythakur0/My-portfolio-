@@ -98,9 +98,7 @@
       text-decoration: none;
       transition: transform 0.3s ease;
     }
-    .whatsapp-float:hover {
-      transform: scale(1.1);
-    }
+    .whatsapp-float:hover { transform: scale(1.1); }
 
     /* Sections Shared Styling */
     .section {
@@ -280,9 +278,7 @@
       color: var(--text-main);
       background: var(--card-bg);
     }
-    .secondary-btn:hover {
-      border-color: var(--accent);
-    }
+    .secondary-btn:hover { border-color: var(--accent); }
 
     /* Cards & Grids */
     .project-grid, .service-grid {
@@ -390,7 +386,7 @@
     <div class="badge">AI BUILDER</div>
   </nav>
 
-  <!-- 1. HERO SECTION (Clean & Direct) -->
+  <!-- HERO SECTION -->
   <section id="hero" class="hero">
     <div class="hero-content">
       <div class="status-tag">⚡ CURRENTLY LEARNING • BUILDING WITH AI</div>
@@ -410,11 +406,11 @@
     </div>
 
     <div class="canvas-container" id="laptop-container">
-      <div class="canvas-hint">💻 Interactive 3D Laptop • Touch & Drag to rotate (Resets in 2s)</div>
+      <div class="canvas-hint">💻 Interactive 3D Laptop • Touch & Drag to rotate</div>
     </div>
   </section>
 
-  <!-- 2. ABOUT ME SECTION -->
+  <!-- ABOUT ME SECTION -->
   <section id="about" class="section">
     <h2 class="section-title">ABOUT <span class="highlight">ME</span></h2>
     <div class="about-container">
@@ -442,7 +438,7 @@
     </div>
   </section>
 
-  <!-- 3. SERVICES SECTION -->
+  <!-- SERVICES SECTION -->
   <section id="services" class="section">
     <h2 class="section-title">WHAT I <span class="highlight">OFFER</span></h2>
     <div class="service-grid">
@@ -467,17 +463,17 @@
     </div>
   </section>
 
-  <!-- 4. MOBILE SHOWCASE SECTION -->
+  <!-- MOBILE SHOWCASE SECTION -->
   <section id="mobile-section" class="section">
     <h2 class="section-title">MOBILE-FIRST <span class="highlight">RESPONSIVE DESIGN</span></h2>
     <p style="text-align:center; color: var(--text-sub); margin-bottom:15px;">360° Detailed Smartphone with Designer Tech Logo & Camera Module</p>
 
     <div class="canvas-container" id="mobile-container">
-      <div class="canvas-hint">📱 Interactive 3D Smartphone • Touch & Drag to rotate (Resets in 2s)</div>
+      <div class="canvas-hint">📱 Interactive 3D Smartphone • Touch & Drag to rotate</div>
     </div>
   </section>
 
-  <!-- 5. CUBE SECTION -->
+  <!-- CUBE SECTION -->
   <section id="cube-section" class="section">
     <h2 class="section-title">INTERACTIVE <span class="highlight">3D TECH CUBE</span></h2>
     <p style="text-align:center; color: var(--text-sub); margin-bottom:15px;">360° Auto-Rotating Tech Cube • Drag to control manually.</p>
@@ -487,12 +483,11 @@
     </div>
   </section>
 
-  <!-- 6. PROJECTS SECTION -->
+  <!-- PROJECTS SECTION -->
   <section id="projects" class="section">
     <h2 class="section-title">FEATURED <span class="highlight">PROJECTS</span></h2>
     
     <div class="project-grid">
-      <!-- Star Men's Parlour -->
       <div class="project-card">
         <div>
           <div class="card-header">
@@ -511,7 +506,6 @@
         </div>
       </div>
 
-      <!-- Abhay Aura -->
       <div class="project-card">
         <div>
           <div class="card-header">
@@ -530,7 +524,7 @@
     </div>
   </section>
 
-  <!-- 7. JOURNEY SECTION -->
+  <!-- JOURNEY SECTION -->
   <section class="section">
     <h2 class="section-title">MY <span class="highlight">JOURNEY</span></h2>
     <div class="timeline">
@@ -553,7 +547,7 @@
     </div>
   </section>
 
-  <!-- 8. CONTACT SECTION (WhatsApp Direct Integration) -->
+  <!-- CONTACT SECTION -->
   <section id="contact" class="section">
     <h2 class="section-title">LET'S BUILD <span class="highlight">SOMETHING.</span></h2>
     <div class="contact-wrapper">
@@ -576,7 +570,6 @@
         </div>
       </div>
 
-      <!-- Instant WhatsApp Form Redirect -->
       <form class="contact-form" onsubmit="sendToWhatsApp(event)">
         <input type="text" id="clientName" placeholder="Your Name" required>
         <input type="text" id="clientProject" placeholder="Your Project Type (e.g., Salon Website)" required>
@@ -592,9 +585,8 @@
     <p style="color:var(--text-sub); font-size:0.75rem; margin-top:5px;">© 2026 Uday Thakur • Built with code & AI.</p>
   </footer>
 
-  <!-- 3D GRAPHICS ENGINE & SCRIPT -->
+  <!-- 3D GRAPHICS ENGINE & OPTIMIZED SCRIPT -->
   <script>
-    // Redirect Contact Form to Direct WhatsApp Message
     function sendToWhatsApp(e) {
       e.preventDefault();
       const name = document.getElementById('clientName').value;
@@ -606,35 +598,27 @@
       window.open(`https://wa.me/918470907072?text=${encodedText}`, '_blank');
     }
 
-    // Custom Control helper with 2-second Auto Reset to Straight View
     function createAutoResetControls(camera, domElement, defaultPos) {
       const controls = new THREE.OrbitControls(camera, domElement);
       controls.enableDamping = true;
       controls.dampingFactor = 0.05;
       controls.enableZoom = false;
 
-      let isInteracting = false;
-      let resetTimeout = null;
       let isResetting = false;
+      let resetTimeout = null;
 
       function startInteraction() {
-        isInteracting = true;
         isResetting = false;
         if (resetTimeout) clearTimeout(resetTimeout);
       }
 
       function endInteraction() {
-        isInteracting = false;
         if (resetTimeout) clearTimeout(resetTimeout);
-        resetTimeout = setTimeout(() => {
-          isResetting = true;
-        }, 2000);
+        resetTimeout = setTimeout(() => { isResetting = true; }, 2000);
       }
 
       domElement.addEventListener('pointerdown', startInteraction);
       domElement.addEventListener('pointerup', endInteraction);
-      domElement.addEventListener('touchstart', startInteraction);
-      domElement.addEventListener('touchend', endInteraction);
 
       return {
         controls,
@@ -653,47 +637,26 @@
       };
     }
 
-    // Modern Geometric Tech Logo Canvas Generator
     function createDesignerLogoTexture() {
       const canvas = document.createElement('canvas');
-      canvas.width = 512; canvas.height = 512;
+      canvas.width = 256; canvas.height = 256;
       const ctx = canvas.getContext('2d');
 
-      ctx.fillStyle = '#2b2e35'; ctx.fillRect(0,0,512,512);
-
-      ctx.shadowColor = '#FF5500';
-      ctx.shadowBlur = 25;
+      ctx.fillStyle = '#2b2e35'; ctx.fillRect(0,0,256,256);
       ctx.fillStyle = '#FF5500';
-
       ctx.beginPath();
-      ctx.moveTo(256, 100);
-      ctx.lineTo(380, 220);
-      ctx.lineTo(256, 410);
-      ctx.lineTo(132, 220);
-      ctx.closePath();
-      ctx.fill();
+      ctx.moveTo(128, 50); ctx.lineTo(190, 110); ctx.lineTo(128, 205); ctx.lineTo(66, 110);
+      ctx.closePath(); ctx.fill();
 
-      ctx.shadowBlur = 0;
       ctx.fillStyle = '#1e2026';
       ctx.beginPath();
-      ctx.moveTo(256, 150);
-      ctx.lineTo(330, 220);
-      ctx.lineTo(256, 350);
-      ctx.lineTo(182, 220);
-      ctx.closePath();
-      ctx.fill();
-
-      ctx.fillStyle = '#FFFFFF';
-      ctx.beginPath();
-      ctx.arc(256, 220, 24, 0, Math.PI * 2);
-      ctx.fill();
+      ctx.moveTo(128, 75); ctx.lineTo(165, 110); ctx.lineTo(128, 175); ctx.lineTo(91, 110);
+      ctx.closePath(); ctx.fill();
 
       return new THREE.CanvasTexture(canvas);
     }
 
-    // ===================================================
-    // 1. HD REALISTIC LAPTOP
-    // ===================================================
+    // 1. LAPTOP
     (function initHDLaptop() {
       const container = document.getElementById('laptop-container');
       const scene = new THREE.Scene();
@@ -703,7 +666,7 @@
 
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       renderer.setSize(container.clientWidth, container.clientHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
       container.appendChild(renderer.domElement);
 
       const controller = createAutoResetControls(camera, renderer.domElement, defaultCamPos);
@@ -712,99 +675,27 @@
 
       const metallicMat = new THREE.MeshStandardMaterial({ color: 0x2b2e35, metalness: 0.85, roughness: 0.2 });
 
-      // Base Body
       const baseMesh = new THREE.Mesh(new THREE.BoxGeometry(2.8, 0.09, 1.9), metallicMat);
       baseMesh.position.y = -0.4;
       laptopGroup.add(baseMesh);
 
-      // Backlit Keyboard Bed
-      const kbGlowBed = new THREE.Mesh(
-        new THREE.PlaneGeometry(2.35, 0.9),
-        new THREE.MeshBasicMaterial({ color: 0xff5500 })
-      );
-      kbGlowBed.rotation.x = -Math.PI / 2;
-      kbGlowBed.position.set(0, -0.345, -0.2);
-      laptopGroup.add(kbGlowBed);
-
-      // Key Caps
-      const keyMat = new THREE.MeshStandardMaterial({ color: 0x0a0a0c, roughness: 0.2, metalness: 0.5 });
-      const rows = 5, cols = 14;
-      for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-          const keyMesh = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.035, 0.13), keyMat);
-          keyMesh.position.set(-1.05 + c * 0.16, -0.33, -0.52 + r * 0.16);
-          laptopGroup.add(keyMesh);
-        }
-      }
-
-      // Trackpad
-      const trackpad = new THREE.Mesh(
-        new THREE.BoxGeometry(0.85, 0.01, 0.55),
-        new THREE.MeshStandardMaterial({ color: 0x1f2128, metalness: 0.6, roughness: 0.2 })
-      );
-      trackpad.position.set(0, -0.35, 0.45);
-      laptopGroup.add(trackpad);
-
-      // Hinge
-      const hinge = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 2.5, 16), metallicMat);
-      hinge.rotation.z = Math.PI / 2;
-      hinge.position.set(0, -0.36, -0.92);
-      laptopGroup.add(hinge);
-
-      // Screen Lid Group
       const screenGroup = new THREE.Group();
       screenGroup.position.set(0, -0.36, -0.92);
 
-      // Lid Shell
       const lidMesh = new THREE.Mesh(new THREE.BoxGeometry(2.8, 1.8, 0.04), metallicMat);
       lidMesh.position.set(0, 0.9, 0);
       screenGroup.add(lidMesh);
 
-      // Back Logo
-      const designerLogoTex = createDesignerLogoTexture();
-      const logoMesh = new THREE.Mesh(
-        new THREE.PlaneGeometry(0.65, 0.65),
-        new THREE.MeshBasicMaterial({ map: designerLogoTex, transparent: true })
-      );
-      logoMesh.position.set(0, 0.9, -0.022);
-      logoMesh.rotation.y = Math.PI;
-      screenGroup.add(logoMesh);
-
-      // Screen Glass Bezel
-      const bezelMesh = new THREE.Mesh(new THREE.PlaneGeometry(2.7, 1.7), new THREE.MeshBasicMaterial({ color: 0x000000 }));
-      bezelMesh.position.set(0, 0.9, 0.022);
-      screenGroup.add(bezelMesh);
-
-      // SCREEN CODE DISPLAY
       const screenCanvas = document.createElement('canvas');
-      screenCanvas.width = 1280; screenCanvas.height = 800;
+      screenCanvas.width = 512; screenCanvas.height = 320;
       const ctx = screenCanvas.getContext('2d');
-      
-      ctx.fillStyle = '#050608'; ctx.fillRect(0, 0, 1280, 800);
-      ctx.fillStyle = '#181a24'; ctx.fillRect(0, 0, 1280, 80);
-      ctx.fillStyle = '#ff5f56'; ctx.beginPath(); ctx.arc(40, 40, 14, 0, Math.PI*2); ctx.fill();
-      ctx.fillStyle = '#ffbd2e'; ctx.beginPath(); ctx.arc(80, 40, 14, 0, Math.PI*2); ctx.fill();
-      ctx.fillStyle = '#27c93f'; ctx.beginPath(); ctx.arc(120, 40, 14, 0, Math.PI*2); ctx.fill();
-
-      ctx.fillStyle = '#a0a0a0'; ctx.font = 'bold 30px monospace';
-      ctx.fillText("uday-portfolio.js - Visual Studio Code", 160, 50);
-
-      ctx.fillStyle = '#FF5500'; ctx.font = 'bold 48px monospace';
-      ctx.fillText('const developer = "UDAY THAKUR";', 60, 180);
-      
-      ctx.fillStyle = '#00FF88'; ctx.font = 'bold 42px monospace';
-      ctx.fillText('function buildAwesomeWebsites() {', 60, 270);
-      
-      ctx.fillStyle = '#00E5FF'; ctx.font = 'bold 40px monospace';
-      ctx.fillText('  const skills = ["HTML", "CSS", "JS", "AI"];', 110, 350);
-      ctx.fillText('  return "Turning Ideas into Reality";', 110, 430);
-      
-      ctx.fillStyle = '#00FF88'; ctx.font = 'bold 42px monospace';
-      ctx.fillText('}', 60, 510);
-      
-      ctx.fillStyle = '#FFBD2E'; ctx.font = 'bold 36px monospace';
-      ctx.fillText('// Currently Learning & AI Building...', 60, 620);
-      ctx.fillText('// Live: Star Men\'s Parlour Website', 60, 690);
+      ctx.fillStyle = '#050608'; ctx.fillRect(0, 0, 512, 320);
+      ctx.fillStyle = '#FF5500'; ctx.font = 'bold 22px monospace';
+      ctx.fillText('const developer = "UDAY THAKUR";', 20, 60);
+      ctx.fillStyle = '#00FF88'; ctx.font = 'bold 18px monospace';
+      ctx.fillText('function buildWebsites() {', 20, 110);
+      ctx.fillText('  return "3D & AI Web Creator";', 40, 150);
+      ctx.fillText('}', 20, 190);
 
       const screenTexture = new THREE.CanvasTexture(screenCanvas);
       const displayMesh = new THREE.Mesh(new THREE.PlaneGeometry(2.58, 1.58), new THREE.MeshBasicMaterial({ map: screenTexture }));
@@ -814,15 +705,10 @@
       screenGroup.rotation.x = -0.25;
       laptopGroup.add(screenGroup);
 
-      // Lights
       scene.add(new THREE.AmbientLight(0xffffff, 1.2));
       const frontLight = new THREE.DirectionalLight(0xffffff, 1.5);
       frontLight.position.set(5, 8, 5);
       scene.add(frontLight);
-
-      const backLight = new THREE.DirectionalLight(0xff5500, 1.5);
-      backLight.position.set(-5, 5, -8);
-      scene.add(backLight);
 
       function animate() {
         requestAnimationFrame(animate);
@@ -832,10 +718,7 @@
       animate();
     })();
 
-
-    // ===================================================
-    // 2. HD REALISTIC SMARTPHONE
-    // ===================================================
+    // 2. SMARTPHONE
     (function initHDMobile() {
       const container = document.getElementById('mobile-container');
       const scene = new THREE.Scene();
@@ -845,7 +728,7 @@
 
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       renderer.setSize(container.clientWidth, container.clientHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
       container.appendChild(renderer.domElement);
 
       const controller = createAutoResetControls(camera, renderer.domElement, defaultCamPos);
@@ -853,104 +736,25 @@
       scene.add(phoneGroup);
 
       const phoneMat = new THREE.MeshStandardMaterial({ color: 0x1f2128, metalness: 0.85, roughness: 0.2 });
-
-      // Phone Main Body
       const phoneMesh = new THREE.Mesh(new THREE.BoxGeometry(1.35, 2.7, 0.12), phoneMat);
       phoneGroup.add(phoneMesh);
 
-      // Camera Island
-      const camIslandMat = new THREE.MeshStandardMaterial({ color: 0x111216, metalness: 0.9, roughness: 0.1 });
-      const camIsland = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.8, 0.05), camIslandMat);
-      camIsland.position.set(-0.32, 0.8, -0.07);
-      phoneGroup.add(camIsland);
-
-      // Triple Camera Lenses
-      const ringMat = new THREE.MeshStandardMaterial({ color: 0xff5500, metalness: 0.9 });
-      const lensMat = new THREE.MeshBasicMaterial({ color: 0x000000 });
-      
-      const lensPositions = [0.18, -0.08, -0.32];
-      lensPositions.forEach(yPos => {
-        const ring = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.02, 16), ringMat);
-        ring.rotation.x = Math.PI / 2;
-        ring.position.set(-0.32, 0.8 + yPos, -0.095);
-        phoneGroup.add(ring);
-
-        const lens = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.025, 16), lensMat);
-        lens.rotation.x = Math.PI / 2;
-        lens.position.set(-0.32, 0.8 + yPos, -0.098);
-        phoneGroup.add(lens);
-      });
-
-      // LED Flash
-      const flash = new THREE.Mesh(
-        new THREE.CylinderGeometry(0.04, 0.04, 0.02, 16),
-        new THREE.MeshBasicMaterial({ color: 0xfff0a0 })
-      );
-      flash.rotation.x = Math.PI / 2;
-      flash.position.set(-0.15, 0.95, -0.09);
-      phoneGroup.add(flash);
-
-      // Rear Designer Tech Emblem Logo
-      const designerLogoTex = createDesignerLogoTexture();
-      const pLogoMesh = new THREE.Mesh(
-        new THREE.PlaneGeometry(0.45, 0.45),
-        new THREE.MeshBasicMaterial({ map: designerLogoTex })
-      );
-      pLogoMesh.position.set(0, -0.2, -0.062);
-      pLogoMesh.rotation.y = Math.PI;
-      phoneGroup.add(pLogoMesh);
-
-      // FRONT DISPLAY
       const mobileCanvas = document.createElement('canvas');
-      mobileCanvas.width = 600; mobileCanvas.height = 1200;
+      mobileCanvas.width = 300; mobileCanvas.height = 600;
       const ctx = mobileCanvas.getContext('2d');
-      
-      ctx.fillStyle = '#08090d'; ctx.fillRect(0, 0, 600, 1200);
-
-      // Notch
-      ctx.fillStyle = '#000000';
-      ctx.beginPath(); ctx.roundRect(220, 20, 160, 36, 18); ctx.fill();
-
-      ctx.fillStyle = '#FF5500'; ctx.font = 'bold 44px sans-serif';
-      ctx.fillText('MOBILE FIRST UI', 120, 130);
-
-      ctx.fillStyle = '#00FF88'; ctx.font = 'bold 32px monospace';
-      ctx.fillText('> Responsive Design', 40, 230);
-      ctx.fillText('> Fast 60 FPS Engine', 40, 290);
-      ctx.fillText('> AI Assisted Code', 40, 350);
-
-      ctx.fillStyle = '#00E5FF'; ctx.font = 'bold 30px monospace';
-      ctx.fillText('const user = "Uday Thakur";', 40, 450);
-
-      // Card
-      ctx.fillStyle = '#181b26';
-      ctx.beginPath(); ctx.roundRect(40, 540, 520, 560, 24); ctx.fill();
-      ctx.strokeStyle = '#FF5500'; ctx.lineWidth = 4; ctx.stroke();
-
-      ctx.fillStyle = '#FF5500'; ctx.font = 'bold 38px sans-serif';
-      ctx.fillText('LIVE PROJECT', 80, 630);
-
-      ctx.fillStyle = '#FFFFFF'; ctx.font = 'bold 32px sans-serif';
-      ctx.fillText('Star Men\'s Parlour', 80, 720);
-      ctx.fillText('• GitHub Pages Live ↗', 80, 800);
-
-      ctx.fillStyle = '#00FF88'; ctx.font = 'bold 28px sans-serif';
-      ctx.fillText('Status: Active & Live ⚡', 80, 920);
+      ctx.fillStyle = '#08090d'; ctx.fillRect(0, 0, 300, 600);
+      ctx.fillStyle = '#FF5500'; ctx.font = 'bold 22px sans-serif';
+      ctx.fillText('MOBILE FIRST UI', 50, 80);
 
       const mobileTexture = new THREE.CanvasTexture(mobileCanvas);
       const screenMesh = new THREE.Mesh(new THREE.PlaneGeometry(1.28, 2.62), new THREE.MeshBasicMaterial({ map: mobileTexture }));
       screenMesh.position.z = 0.062;
       phoneGroup.add(screenMesh);
 
-      // Lights
       scene.add(new THREE.AmbientLight(0xffffff, 1.2));
       const pLight = new THREE.DirectionalLight(0xffffff, 1.5);
       pLight.position.set(2, 3, 3);
       scene.add(pLight);
-
-      const pBackLight = new THREE.DirectionalLight(0xff5500, 1.5);
-      pBackLight.position.set(-2, 3, -4);
-      scene.add(pBackLight);
 
       function animate() {
         requestAnimationFrame(animate);
@@ -960,10 +764,7 @@
       animate();
     })();
 
-
-    // ===================================================
     // 3. TECH CUBE
-    // ===================================================
     (function initCube() {
       const container = document.getElementById('cube-container');
       const scene = new THREE.Scene();
@@ -974,19 +775,17 @@
 
       const controls = new THREE.OrbitControls(camera, renderer.domElement);
       controls.enableDamping = true;
-      controls.dampingFactor = 0.05;
       controls.enableZoom = false;
 
       function createFaceTexture(label, color) {
         const canvas = document.createElement('canvas');
-        canvas.width = 256; canvas.height = 256;
+        canvas.width = 128; canvas.height = 128;
         const ctx = canvas.getContext('2d');
-        ctx.fillStyle = '#111216'; ctx.fillRect(0, 0, 256, 256);
-        ctx.strokeStyle = color; ctx.lineWidth = 14; ctx.strokeRect(0, 0, 256, 256);
-        
-        ctx.fillStyle = color; ctx.font = 'bold 42px sans-serif';
+        ctx.fillStyle = '#111216'; ctx.fillRect(0, 0, 128, 128);
+        ctx.strokeStyle = color; ctx.lineWidth = 8; ctx.strokeRect(0, 0, 128, 128);
+        ctx.fillStyle = color; ctx.font = 'bold 20px sans-serif';
         ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        ctx.fillText(label, 128, 128);
+        ctx.fillText(label, 64, 64);
         return new THREE.CanvasTexture(canvas);
       }
 
@@ -1013,10 +812,6 @@
       }
       animate();
     })();
-
-    window.addEventListener('resize', () => {
-      location.reload();
-    });
   </script>
 </body>
 </html>
