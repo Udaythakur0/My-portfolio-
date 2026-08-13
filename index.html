@@ -158,7 +158,7 @@
     /* 3D Canvas Box */
     .canvas-container {
       width: 100%;
-      height: 420px;
+      height: 450px;
       position: relative;
       border-radius: 16px;
       overflow: hidden;
@@ -379,7 +379,7 @@
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#services">Services</a>
-      <a href="#hero">HD Laptop</a>
+      <a href="#hero">3D Laptop</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </div>
@@ -406,7 +406,7 @@
     </div>
 
     <div class="canvas-container" id="laptop-container">
-      <div class="canvas-hint">💻 Interactive 3D Laptop • Touch & Drag to rotate</div>
+      <div class="canvas-hint">💻 Realistic 3D Laptop • Touch & Drag to rotate</div>
     </div>
   </section>
 
@@ -466,7 +466,7 @@
   <!-- MOBILE SHOWCASE SECTION -->
   <section id="mobile-section" class="section">
     <h2 class="section-title">MOBILE-FIRST <span class="highlight">RESPONSIVE DESIGN</span></h2>
-    <p style="text-align:center; color: var(--text-sub); margin-bottom:15px;">360° Detailed Smartphone with Designer Tech Logo & Camera Module</p>
+    <p style="text-align:center; color: var(--text-sub); margin-bottom:15px;">360° Detailed Smartphone with Code Screen & Camera Lens</p>
 
     <div class="canvas-container" id="mobile-container">
       <div class="canvas-hint">📱 Interactive 3D Smartphone • Touch & Drag to rotate</div>
@@ -632,186 +632,4 @@
               isResetting = false;
             }
           }
-          controls.update();
-        }
-      };
-    }
-
-    function createDesignerLogoTexture() {
-      const canvas = document.createElement('canvas');
-      canvas.width = 256; canvas.height = 256;
-      const ctx = canvas.getContext('2d');
-
-      ctx.fillStyle = '#2b2e35'; ctx.fillRect(0,0,256,256);
-      ctx.fillStyle = '#FF5500';
-      ctx.beginPath();
-      ctx.moveTo(128, 50); ctx.lineTo(190, 110); ctx.lineTo(128, 205); ctx.lineTo(66, 110);
-      ctx.closePath(); ctx.fill();
-
-      ctx.fillStyle = '#1e2026';
-      ctx.beginPath();
-      ctx.moveTo(128, 75); ctx.lineTo(165, 110); ctx.lineTo(128, 175); ctx.lineTo(91, 110);
-      ctx.closePath(); ctx.fill();
-
-      return new THREE.CanvasTexture(canvas);
-    }
-
-    // 1. LAPTOP
-    (function initHDLaptop() {
-      const container = document.getElementById('laptop-container');
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-      const defaultCamPos = new THREE.Vector3(0, 0.3, 4.2);
-      camera.position.copy(defaultCamPos);
-
-      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setSize(container.clientWidth, container.clientHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-      container.appendChild(renderer.domElement);
-
-      const controller = createAutoResetControls(camera, renderer.domElement, defaultCamPos);
-      const laptopGroup = new THREE.Group();
-      scene.add(laptopGroup);
-
-      const metallicMat = new THREE.MeshStandardMaterial({ color: 0x2b2e35, metalness: 0.85, roughness: 0.2 });
-
-      const baseMesh = new THREE.Mesh(new THREE.BoxGeometry(2.8, 0.09, 1.9), metallicMat);
-      baseMesh.position.y = -0.4;
-      laptopGroup.add(baseMesh);
-
-      const screenGroup = new THREE.Group();
-      screenGroup.position.set(0, -0.36, -0.92);
-
-      const lidMesh = new THREE.Mesh(new THREE.BoxGeometry(2.8, 1.8, 0.04), metallicMat);
-      lidMesh.position.set(0, 0.9, 0);
-      screenGroup.add(lidMesh);
-
-      const screenCanvas = document.createElement('canvas');
-      screenCanvas.width = 512; screenCanvas.height = 320;
-      const ctx = screenCanvas.getContext('2d');
-      ctx.fillStyle = '#050608'; ctx.fillRect(0, 0, 512, 320);
-      ctx.fillStyle = '#FF5500'; ctx.font = 'bold 22px monospace';
-      ctx.fillText('const developer = "UDAY THAKUR";', 20, 60);
-      ctx.fillStyle = '#00FF88'; ctx.font = 'bold 18px monospace';
-      ctx.fillText('function buildWebsites() {', 20, 110);
-      ctx.fillText('  return "3D & AI Web Creator";', 40, 150);
-      ctx.fillText('}', 20, 190);
-
-      const screenTexture = new THREE.CanvasTexture(screenCanvas);
-      const displayMesh = new THREE.Mesh(new THREE.PlaneGeometry(2.58, 1.58), new THREE.MeshBasicMaterial({ map: screenTexture }));
-      displayMesh.position.set(0, 0.9, 0.025);
-      screenGroup.add(displayMesh);
-
-      screenGroup.rotation.x = -0.25;
-      laptopGroup.add(screenGroup);
-
-      scene.add(new THREE.AmbientLight(0xffffff, 1.2));
-      const frontLight = new THREE.DirectionalLight(0xffffff, 1.5);
-      frontLight.position.set(5, 8, 5);
-      scene.add(frontLight);
-
-      function animate() {
-        requestAnimationFrame(animate);
-        controller.update();
-        renderer.render(scene, camera);
-      }
-      animate();
-    })();
-
-    // 2. SMARTPHONE
-    (function initHDMobile() {
-      const container = document.getElementById('mobile-container');
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-      const defaultCamPos = new THREE.Vector3(0, 0, 3.6);
-      camera.position.copy(defaultCamPos);
-
-      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setSize(container.clientWidth, container.clientHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-      container.appendChild(renderer.domElement);
-
-      const controller = createAutoResetControls(camera, renderer.domElement, defaultCamPos);
-      const phoneGroup = new THREE.Group();
-      scene.add(phoneGroup);
-
-      const phoneMat = new THREE.MeshStandardMaterial({ color: 0x1f2128, metalness: 0.85, roughness: 0.2 });
-      const phoneMesh = new THREE.Mesh(new THREE.BoxGeometry(1.35, 2.7, 0.12), phoneMat);
-      phoneGroup.add(phoneMesh);
-
-      const mobileCanvas = document.createElement('canvas');
-      mobileCanvas.width = 300; mobileCanvas.height = 600;
-      const ctx = mobileCanvas.getContext('2d');
-      ctx.fillStyle = '#08090d'; ctx.fillRect(0, 0, 300, 600);
-      ctx.fillStyle = '#FF5500'; ctx.font = 'bold 22px sans-serif';
-      ctx.fillText('MOBILE FIRST UI', 50, 80);
-
-      const mobileTexture = new THREE.CanvasTexture(mobileCanvas);
-      const screenMesh = new THREE.Mesh(new THREE.PlaneGeometry(1.28, 2.62), new THREE.MeshBasicMaterial({ map: mobileTexture }));
-      screenMesh.position.z = 0.062;
-      phoneGroup.add(screenMesh);
-
-      scene.add(new THREE.AmbientLight(0xffffff, 1.2));
-      const pLight = new THREE.DirectionalLight(0xffffff, 1.5);
-      pLight.position.set(2, 3, 3);
-      scene.add(pLight);
-
-      function animate() {
-        requestAnimationFrame(animate);
-        controller.update();
-        renderer.render(scene, camera);
-      }
-      animate();
-    })();
-
-    // 3. TECH CUBE
-    (function initCube() {
-      const container = document.getElementById('cube-container');
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setSize(container.clientWidth, container.clientHeight);
-      container.appendChild(renderer.domElement);
-
-      const controls = new THREE.OrbitControls(camera, renderer.domElement);
-      controls.enableDamping = true;
-      controls.enableZoom = false;
-
-      function createFaceTexture(label, color) {
-        const canvas = document.createElement('canvas');
-        canvas.width = 128; canvas.height = 128;
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = '#111216'; ctx.fillRect(0, 0, 128, 128);
-        ctx.strokeStyle = color; ctx.lineWidth = 8; ctx.strokeRect(0, 0, 128, 128);
-        ctx.fillStyle = color; ctx.font = 'bold 20px sans-serif';
-        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        ctx.fillText(label, 64, 64);
-        return new THREE.CanvasTexture(canvas);
-      }
-
-      const materials = [
-        new THREE.MeshBasicMaterial({ map: createFaceTexture('HTML5', '#ff5500') }),
-        new THREE.MeshBasicMaterial({ map: createFaceTexture('CSS3', '#00aeff') }),
-        new THREE.MeshBasicMaterial({ map: createFaceTexture('JS', '#f7df1e') }),
-        new THREE.MeshBasicMaterial({ map: createFaceTexture('AI', '#00ffcc') }),
-        new THREE.MeshBasicMaterial({ map: createFaceTexture('UI/UX', '#ff007f') }),
-        new THREE.MeshBasicMaterial({ map: createFaceTexture('3D WEB', '#ffffff') })
-      ];
-
-      const cubeMesh = new THREE.Mesh(new THREE.BoxGeometry(1.5, 1.5, 1.5), materials);
-      scene.add(cubeMesh);
-
-      camera.position.set(0, 0, 3.6);
-
-      function animate() {
-        requestAnimationFrame(animate);
-        cubeMesh.rotation.x += 0.008;
-        cubeMesh.rotation.y += 0.01;
-        controls.update();
-        renderer.render(scene, camera);
-      }
-      animate();
-    })();
-  </script>
-</body>
-</html>
+       
